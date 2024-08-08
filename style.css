@@ -1,0 +1,240 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-width: 100%;
+  height: 100%;
+  min-height: 100%;
+  font-family: "Hubot Sans";
+  font-stretch: 100%;
+  background: rgb(0, 0, 0);
+  color: white;
+}
+
+@font-face {
+  font-family: "Hubot Sans";
+  src:
+    url("./assets/fonts/Hubot Sans/Hubot-Sans.woff2") format('woff2 supports variations'),
+    url("./assets/fonts/Hubot Sans/Hubot-Sans.woff2") format('woff2-variations');
+  font-weight: 100 900;
+  font-stretch: 50% 100%;
+}
+
+@font-face {
+  font-family: 'Mona Sans';
+  src:
+    url("./assets/fonts/Mona Sans/Mona-Sans.woff2") format('woff2 supports variations'),
+    url("./assets/fonts/Mona Sans/Mona-Sans.woff2") format('woff2-variations');
+  font-weight: 100 900;
+  font-stretch: 75% 150%;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 7.5px 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.header-left img {
+  display: block;
+  height: 60px;
+}
+
+.header-right {
+  height: 100% !important;
+}
+
+.nav-toggle-btn {
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.toggle-btn-line {
+  width: 40px;
+  height: 2px;
+  background: white;
+}
+
+.hero-section, main, .slide-wrapper, .slide, .slide-overlay {
+  width: 100%;
+  height: 100%;
+}
+
+.slide-wrapper {
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 1s ease;
+}
+
+.slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#video-slide {
+  overflow: hidden;
+}
+
+.slide .slide-media {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.slide-media video, .slide-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+}
+
+.slide-overlay {
+  background: #0000007a;
+  padding: 1.7rem;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.slide-left {
+  max-width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 10px;
+  z-index: inherit;
+}
+
+.slide-overlay .slide-title {
+  font-size: 3.85rem;
+  line-height: 3.85rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  position: relative;
+  font-family: "Hubot Sans", "Mona Sans";
+  overflow: hidden;
+}
+
+.slide.active .slide-title span {
+  position: relative;
+  top: 100%;
+  animation: slideUp 0.8s cubic-bezier(0.16, 0.04, 0.18, 1) forwards;
+  animation-delay: calc(0.5s + (var(--i) * 0.1s));
+}
+
+.slide-desc {
+  max-width: 500px;
+}
+
+.slide-cta-btn {
+  padding: 0.75rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  font-weight: 500;
+  text-wrap: nowrap;
+  font-family: "Hubot Sans";
+  align-items: center;
+  background: white;
+  color: black;
+  background-size: cover;
+  transition: all 0.5s;
+  border: 2px solid transparent;
+}
+
+.slide-cta-btn:hover {
+  background: #000;
+  color: white;
+  border-color: white;
+}
+
+.slide-cta-btn svg path {
+  fill: currentColor;
+}
+
+.cursor-playreel {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: url(./assets/images/gradient.jfif) no-repeat;
+  background-size: cover;
+  color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: default;
+  user-select: none;
+  position: absolute;
+  transform: translate(-50%,-50%) scale(0);
+  z-index: 0;
+}
+
+.slide-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 5px;
+  z-index: inherit;
+}
+
+.indicators {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.37);
+  transition: all 0.25s;
+  cursor: pointer;
+}
+
+.indicators.active {
+  background: white;
+}
+
+@keyframes slideUp {
+  from {
+    top: 100%;
+  }
+  to {
+    top: 0;
+  }
+}
